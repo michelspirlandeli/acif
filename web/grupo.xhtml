@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml">
+
+    <h:form>
+        <p:messages autoUpdate="true" showDetail="true"></p:messages>
+        <p:fieldset legend="Objetos">
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Novo" action="#{grupoBean.novo()}" update="@form"></p:commandButton>
+                    <p:commandButton value="Salvar" action="#{grupoBean.salvar()}" disabled="" update="@form"></p:commandButton>
+                    <p:commandButton value="Buscar" action="#{grupoBean.buscar()}" update="@form"></p:commandButton>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:panelGrid columns="2" rendered="#{grupoBean.busca == false}">
+                <h:outputLabel value="Descricao"></h:outputLabel>
+                <p:inputText value="#{grupoBean.entidade.descricao}"></p:inputText>
+                <h:outputLabel value="dataCadastro"></h:outputLabel>
+                <p:calendar value="#{grupoBean.entidade.dataCadastro}" ></p:calendar>
+            </p:panelGrid>
+            <p:dataTable value="#{grupoBean.entidades}" var="grupo" rendered="#{grupoBean.busca == true}">
+                <p:column>
+                    <p:commandButton value="Editar" action="#{grupoBean.editar(grupo)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" action="#{grupoBean.deletar(grupo)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Descricao" sortBy="#{grupo.descricao}">
+                    <h:outputText value="#{grupo.descricao}"></h:outputText>
+                </p:column>
+                <p:column headerText="datacadastro" sortBy="#{grupo.datacadastro}">
+                    <h:outputText value="#{grupo.datacadastro}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+
