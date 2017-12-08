@@ -1,11 +1,15 @@
 <h1><b>Projeto Acif</b><h1>
 
 <p>Projeto desenvolvido nas tecnologias.</p>
--NetBeans<br />
--Java<br />
--JSF<br />
--Primefaces<br />
--Apache Tomcat
+NetBeans
+
+Java
+
+JSF
+
+Primefaces
+
+Apache Tomcat
 
 <h1><b>Como começar</b></h1>
 
